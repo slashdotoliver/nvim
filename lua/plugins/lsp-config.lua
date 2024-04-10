@@ -5,9 +5,12 @@ return {
 		keys = {
 			{ "<C-q>", vim.lsp.buf.hover, mode = "n", desc = "Hover Info" },
 			{ "<leader>gd", vim.lsp.buf.definition, mode = "n", desc = "Go to Definition" },
+            { "<leader>gu", vim.lsp.buf.declaration, mode = "n", desc = "Go to Usages or Declarations" },
 			{ "<leader>gi", vim.lsp.buf.implementation, mode = "n", desc = "Go to Implementation" },
+            { "<leader>gt", vim.lsp.buf.type_definition, mode = "n", desc = "Go to Type Definition" },
 			{ "<M-Enter>", vim.lsp.buf.code_action, mode = "n", desc = "See Code Actions" },
 			{ "<leader>gf", vim.lsp.buf.format, mode = "n", desc = "'Go' Format" },
+            { "<F18>", vim.lsp.buf.rename, mode = "n", desc = "Rename Variable under Cursor" },
 		},
 
 		config = function()

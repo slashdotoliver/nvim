@@ -45,6 +45,7 @@ function Neotree_change_state(new_state)
     end
 
     Neotree_state_actions[Current_state].exit()
+    vim.cmd(":BarbarEnable")
     Neotree_state_actions[change_state].enter()
     Current_state = change_state
 end
