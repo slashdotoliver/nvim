@@ -86,7 +86,7 @@ return {
 					highlight = "Normal",
 				},
 				GitAdd = {
-					text = "▐", -- "┆",
+					text = "▕", -- "┆",
 					priority = 7,
 					gui = nil,
 					color = nil,
@@ -95,7 +95,7 @@ return {
 					highlight = "GitSignsAdd",
 				},
 				GitChange = {
-					text = "▐", -- "┆",
+					text = "▕", -- "┆",
 					priority = 7,
 					gui = nil,
 					color = nil,

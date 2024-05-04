@@ -4,7 +4,7 @@ return {
 
     keys = {
         { "<leader>fs", "<cmd>SessionManager load_session<CR>", mode = "n", desc = "Find/Load a Session" },
-        { "<leader>ds", "<cmd>SessionManager delete_session<CR>", mode = "n", desc = "Remove Saved Sessions" },
+        { "<leader>rs", "<cmd>SessionManager delete_session<CR>", mode = "n", desc = "Remove Saved Sessions" },
     },
 
 	config = function()
