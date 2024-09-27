@@ -101,8 +101,8 @@ return {
 	{ -- https://github.com/mfussenegger/nvim-dap
 		"mfussenegger/nvim-dap",
 		keys = {
-			{ "<leader>db", "<cmd>DapToggleBreakpoint <CR>", mode = "n", desc = "Debugging: Toggle Breakpoint" },
-			{ "<leader>dc", "<cmd>DapContinue <CR>", mode = "n", desc = "Debugging: Continue Execution" },
+			{ "<leader>db", "<cmd>DapToggleBreakpoint <CR>", mode = "n", desc = "Toggle Breakpoint" },
+			{ "<leader>dc", "<cmd>DapContinue <CR>", mode = "n", desc = "Continue Execution" },
 			{ "<F9>", "<cmd>DapContinue <CR>", mode = "n", desc = "Debugging: Resume" },
 			{ "<F8>", "<cmd>DapStepOver <CR>", mode = "n", desc = "Debugging: Step Over" },
 			{ "<F20>", "<cmd>DapStepOut <CR>", mode = "n", desc = "Debugging: Step Out" },
@@ -166,7 +166,7 @@ return {
 					require("dap-python").test_method()
 				end,
 				mode = "n",
-				desc = "Debugging Python: Run Test",
+				desc = "Run Test",
 			},
 		},
 	},

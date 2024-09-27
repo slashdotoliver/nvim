@@ -9,8 +9,3 @@
 
 In Mason: Install debugpy, codelldb -- mypy, ruff
 
-### TODO
-- show usages on top of line method/class/struct...
-- inlay hints
-- show hex and string colors
-

@@ -37,6 +37,7 @@ return {
                     "jedi_language_server", -- python LSP
                     "jdtls", -- java LSP, used by nvim-jdlts
                     "omnisharp", -- c# LSP, OmniSharp server based on Roslyn workspaces
+                    "rust_analyzer" -- rust LSP https://rust-analyzer.github.io/
                 },
             })
         end,
@@ -66,6 +67,17 @@ return {
             lspconfig.lua_ls.setup({
                 capabilities = capabilities, -- Include this in every LSP
                 filetypes = { "lua" },
+            })
+
+            lspconfig.rust_analyzer.setup({
+                capabilities = capabilities,
+                filetypes = { "rust" },
+                -- root_dir = util.root_pattern("Cargo.toml"), -- require("lspconfig/util")
+                settings = {
+                    ["rust_analyzer"] = {
+                        cargo = { allFeatures = true },
+                    }
+                }
             })
 
             lspconfig.clangd.setup({

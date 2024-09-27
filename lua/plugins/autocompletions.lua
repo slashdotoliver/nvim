@@ -21,17 +21,21 @@ return {
         -- Completion sources are installed from external repositories and "sourced".
         -- "creates the window for selecting completions."
         "hrsh7th/nvim-cmp",
+        dependencies = {
+            "onsails/lspkind.nvim", -- https://github.com/onsails/lspkind.nvim
+        },
 
         config = function()
             -- Set up nvim-cmp.
             local cmp = require("cmp")
             require("luasnip.loaders.from_vscode").lazy_load() -- Load LuaSnip snippets
+            local lspkind = require("lspkind")        -- optional dependency for icons
 
             local select_opts = { behavior = cmp.SelectBehavior.Select }
 
             cmp.setup({
                 completion = {
-                    completeopt = "menu,menuone,noinsert"
+                    --completeopt = "menu,menuone,noinsert",
                 },
                 snippet = {
                     -- REQUIRED - you must specify a snippet engine
@@ -44,7 +48,7 @@ return {
                     end,
                 },
                 window = {
-                    -- completion = cmp.config.window.bordered(),
+                    --completion = cmp.config.window.bordered(),
                     documentation = cmp.config.window.bordered(),
                 },
                 mapping = cmp.mapping.preset.insert({
@@ -52,20 +56,32 @@ return {
                     ["<C-f>"] = cmp.mapping.scroll_docs(4),
                     ["<C-Space>"] = cmp.mapping.complete(),
                     ["<esc>"] = cmp.mapping.abort(),
-                    ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item.
-                    -- Set `select` to `false` to only confirm explicitly selected items.
-                    ["<Tab>"] = cmp.mapping(function(fallback)
-                        local col = vim.fn.col(".") - 1
-
+                    -- Intellij-like mapping
+                    -- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#intellij-like-mapping
+                    ["<CR>"] = cmp.mapping(function(fallback)
+                        -- This little snippet will confirm with enter, and if no entry is selected, will confirm the first item
                         if cmp.visible() then
-                            cmp.select_next_item(select_opts)
-                        elseif col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
-                            fallback()
-                        else
+                            local entry = cmp.get_selected_entry()
+                            if not entry then
+                                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                            end
                             cmp.confirm()
+                        else
+                            fallback()
                         end
-                    end, { "i", "s" }),
-
+                    end, { "i", "s", "c" }),
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                        -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
+                        if cmp.visible() then
+                            local entry = cmp.get_selected_entry()
+                            if not entry then
+                                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                            end
+                            cmp.confirm()
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s", "c" }),
                     ["<S-Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_prev_item(select_opts)
@@ -80,9 +96,14 @@ return {
                     { name = "luasnip" }, -- For luasnip users.
                     -- { name = 'ultisnips' }, -- For ultisnips users.
                     -- { name = 'snippy' }, -- For snippy users.
-                }, {
-                    { name = "buffer" },
-                }),
+                }, { { name = "buffer" } }),
+                formatting = {
+                    format = lspkind.cmp_format({
+                        -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
+                        mode = "symbol_text",
+                        show_labelDetails = true,
+                    }),
+                },
             })
 
             cmp.setup.cmdline("/", {
@@ -112,9 +133,9 @@ return {
         dependencies = {
             "neovim/nvim-lspconfig",
         },
-        config = function () end, -- setup() called by nvim-dap-ui
+        config = function() end, -- setup() called by nvim-dap-ui
     },
-    { -- commandline completions
+    {                      -- commandline completions
         "hrsh7th/cmp-cmdline",
     },
     { -- ?
