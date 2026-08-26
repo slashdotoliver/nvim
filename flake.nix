@@ -21,22 +21,37 @@
           pkgs = import nixpkgs { inherit system; };
 
           dependencies = with pkgs; [
+            # LazyVim and Neovim
             git
             ripgrep
             fd
-            gcc
-            gnumake
             fzf
-            lazygit
-            tree-sitter
-            chafa
-            imagemagick
             unzip
             curl
             wget
-            nodejs
-            python3
-            cargo
+
+            # Tools and UI
+            tree-sitter
+
+            fzf
+            lazygit
+            chafa
+            imagemagick
+
+            # Tree-sitter parser compilation
+            gcc
+            gnumake
+
+            # Runtimes for LSPs
+            #nodejs
+            #python3
+
+            # # === Mason Tools ===
+            lua-language-server         # lua
+            stylua
+            pyright                     # python
+            ruff
+            shfmt                       # shell
           ];
         in
         {
