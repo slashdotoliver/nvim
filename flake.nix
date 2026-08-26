@@ -47,11 +47,11 @@
             #python3
 
             # # === Mason Tools ===
-            lua-language-server         # lua
-            stylua
-            pyright                     # python
-            ruff
-            shfmt                       # shell
+            # lua-language-server         # lua
+            # stylua
+            # pyright                     # python
+            # ruff
+            # shfmt                       # shell
           ];
         in
         {
