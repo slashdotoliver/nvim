@@ -19,3 +19,16 @@ map("n", "<C-S-Right>", "<cmd>vertical resize +1<cr>", { desc = "Increase width"
 -- Move through buffer within a panel
 map("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Cycle next buffer" })
 map("n", "<S-Tab>", "<cmd>bprevious<cr>", { desc = "Cycle previous buffer" })
+
+-- Quick documentation
+map("n", "<C-q>", function()
+  vim.lsp.buf.hover()
+end, { desc = "Hover Documentation" })
+
+-- File explorer
+map("n", "<C-S-E>", "<cmd>Neotree toggle<cr>", { desc = "Toggle Explorer" })
+
+-- Git UI
+map("n", "<C-S-G>", function()
+  Snacks.lazygit()
+end, { desc = "Open LazyGit" })
